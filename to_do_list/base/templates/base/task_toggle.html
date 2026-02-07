@@ -1,0 +1,21 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <a href="{% url 'tasks' %}">&#8592; Back to Tasks</a>
+</div>
+
+<div class="card-body">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+    <p>Status: <strong>{% if task.complete %}Completed{% else %}Incomplete{% endif %}</strong></p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="button" type="submit">
+            {% if task.complete %}Mark as Incomplete{% else %}Mark as Complete{% endif %}
+        </button>
+    </form>
+</div>
+
+{% endblock content %}
